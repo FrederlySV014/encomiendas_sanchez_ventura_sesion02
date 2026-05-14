@@ -123,7 +123,7 @@ class Encomienda(models.Model):
         if nuevo_estado == EstadoEnvio.ENTREGADO:
             self.fecha_entrega_real = timezone.now().date()
 
-        self.save()
+        self.save(skip_validation=True)
 
         # Registrar historial
         HistorialEstado.objects.create(
@@ -213,7 +213,9 @@ class Encomienda(models.Model):
         
     def save(self, *args, **kwargs):
         """Ejecutar validaciones antes de guardar"""
-        self.full_clean()  # ejecuta clean_fields() + clean()
+        skip_validation = kwargs.pop('skip_validation', False)
+        if not skip_validation:
+            self.full_clean()  # ejecuta clean_fields() + clean()
         super().save(*args, **kwargs)
     
     class Meta: 

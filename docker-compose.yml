@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   # Servicio de la app Django 
   web:
@@ -15,6 +13,7 @@ services:
     # variables de entorno 
     depends_on:
       - db
+      - redis
 
   # Servicio de PostgreSQL 
   db:
@@ -26,5 +25,13 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
 
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+
 volumes:
   postgres_data:
+  redis_data:

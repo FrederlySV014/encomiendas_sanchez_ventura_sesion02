@@ -1,0 +1,836 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.0.3, pluggy-1.6.0 -- /usr/local/bin/python3.11
+cachedir: .pytest_cache
+django: version: 5.1.5, settings: config.settings (from ini)
+rootdir: /app
+configfile: pytest.ini
+plugins: Faker-24.0.0, django-4.8.0
+collecting ... collected 23 items
+
+envios/tests/test_api.py::TestAutenticacion::test_sin_token_devuelve_401 FAILED [  4%]
+envios/tests/test_api.py::TestAutenticacion::test_token_invalido_devuelve_401 FAILED [  8%]
+envios/tests/test_api.py::TestAutenticacion::test_con_token_valido_devuelve_200 FAILED [ 13%]
+envios/tests/test_api.py::TestListadoEncomiendas::test_lista_respuesta_paginada ERROR [ 17%]
+envios/tests/test_api.py::TestListadoEncomiendas::test_filtro_por_estado ERROR [ 21%]
+envios/tests/test_api.py::TestListadoEncomiendas::test_busqueda_por_codigo ERROR [ 26%]
+envios/tests/test_api.py::TestCrearEncomienda::test_crear_exitoso_devuelve_201 ERROR [ 30%]
+envios/tests/test_api.py::TestCrearEncomienda::test_crear_asigna_empleado_del_token ERROR [ 34%]
+envios/tests/test_api.py::TestCrearEncomienda::test_remitente_igual_destinatario_devuelve_400 ERROR [ 39%]
+envios/tests/test_api.py::TestCrearEncomienda::test_peso_negativo_devuelve_400_con_campo ERROR [ 43%]
+envios/tests/test_api.py::TestCrearEncomienda::test_codigo_sin_prefijo_devuelve_400 ERROR [ 47%]
+envios/tests/test_api.py::TestCrearEncomienda::test_sin_auth_no_crea_y_devuelve_401 ERROR [ 52%]
+envios/tests/test_api.py::TestCambiarEstado::test_cambiar_estado_exitoso_actualiza_bd_y_crea_historial ERROR [ 56%]
+envios/tests/test_api.py::TestCambiarEstado::test_cambiar_al_mismo_estado_devuelve_400 ERROR [ 60%]
+envios/tests/test_api.py::TestCambiarEstado::test_sin_campo_estado_devuelve_400 ERROR [ 65%]
+envios/tests/test_api.py::TestCambiarEstado::test_encomienda_inexistente_devuelve_404 ERROR [ 69%]
+envios/tests/test_api.py::TestAccionesPersonalizadas::test_con_retraso_solo_devuelve_retrasadas ERROR [ 73%]
+envios/tests/test_api.py::TestAccionesPersonalizadas::test_pendientes_solo_devuelve_pendientes ERROR [ 78%]
+envios/tests/test_api.py::TestAccionesPersonalizadas::test_estadisticas_devuelve_todos_los_contadores ERROR [ 82%]
+envios/tests/test_api.py::TestVersionado::test_v1_responde_200_con_cabecera ERROR [ 86%]
+envios/tests/test_api.py::TestVersionado::test_v2_responde_200_con_cabecera ERROR [ 91%]
+envios/tests/test_api.py::TestVersionado::test_v2_incluye_campo_meta ERROR [ 95%]
+envios/tests/test_api.py::TestVersionado::test_v3_no_permitida_devuelve_404 ERROR [100%]
+
+==================================== ERRORS ====================================
+____ ERROR at setup of TestListadoEncomiendas.test_lista_respuesta_paginada ____
+envios/tests/test_api.py:39: in setup_method
+    self.empleado = EmpleadoFactory(email=self.user.email)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:40: in __call__
+    return cls.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:528: in create
+    return cls._generate(enums.CREATE_STRATEGY, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/django.py:121: in _generate
+    return super()._generate(strategy, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:465: in _generate
+    return step.build()
+           ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:270: in build
+    step.resolve(pre)
+/usr/local/lib/python3.11/site-packages/factory/builder.py:211: in resolve
+    self.attributes[field_name] = getattr(self.stub, field_name)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:356: in __getattr__
+    value = value.evaluate_pre(
+/usr/local/lib/python3.11/site-packages/factory/declarations.py:67: in evaluate_pre
+    return self.evaluate(instance, step, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:47: in evaluate
+    subfaker = self._get_faker(locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:69: in _get_faker
+    subfaker = faker.Faker(locale=locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/faker/proxy.py:72: in __init__
+    self._factory_map[locales[0]] = Factory.create(
+/usr/local/lib/python3.11/site-packages/faker/factory.py:43: in create
+    raise AttributeError(msg)
+E   AttributeError: Invalid configuration for faker locale `es_PE`
+_______ ERROR at setup of TestListadoEncomiendas.test_filtro_por_estado ________
+envios/tests/test_api.py:39: in setup_method
+    self.empleado = EmpleadoFactory(email=self.user.email)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:40: in __call__
+    return cls.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:528: in create
+    return cls._generate(enums.CREATE_STRATEGY, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/django.py:121: in _generate
+    return super()._generate(strategy, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:465: in _generate
+    return step.build()
+           ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:270: in build
+    step.resolve(pre)
+/usr/local/lib/python3.11/site-packages/factory/builder.py:211: in resolve
+    self.attributes[field_name] = getattr(self.stub, field_name)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:356: in __getattr__
+    value = value.evaluate_pre(
+/usr/local/lib/python3.11/site-packages/factory/declarations.py:67: in evaluate_pre
+    return self.evaluate(instance, step, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:47: in evaluate
+    subfaker = self._get_faker(locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:69: in _get_faker
+    subfaker = faker.Faker(locale=locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/faker/proxy.py:72: in __init__
+    self._factory_map[locales[0]] = Factory.create(
+/usr/local/lib/python3.11/site-packages/faker/factory.py:43: in create
+    raise AttributeError(msg)
+E   AttributeError: Invalid configuration for faker locale `es_PE`
+______ ERROR at setup of TestListadoEncomiendas.test_busqueda_por_codigo _______
+envios/tests/test_api.py:39: in setup_method
+    self.empleado = EmpleadoFactory(email=self.user.email)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:40: in __call__
+    return cls.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:528: in create
+    return cls._generate(enums.CREATE_STRATEGY, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/django.py:121: in _generate
+    return super()._generate(strategy, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:465: in _generate
+    return step.build()
+           ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:270: in build
+    step.resolve(pre)
+/usr/local/lib/python3.11/site-packages/factory/builder.py:211: in resolve
+    self.attributes[field_name] = getattr(self.stub, field_name)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:356: in __getattr__
+    value = value.evaluate_pre(
+/usr/local/lib/python3.11/site-packages/factory/declarations.py:67: in evaluate_pre
+    return self.evaluate(instance, step, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:47: in evaluate
+    subfaker = self._get_faker(locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:69: in _get_faker
+    subfaker = faker.Faker(locale=locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/faker/proxy.py:72: in __init__
+    self._factory_map[locales[0]] = Factory.create(
+/usr/local/lib/python3.11/site-packages/faker/factory.py:43: in create
+    raise AttributeError(msg)
+E   AttributeError: Invalid configuration for faker locale `es_PE`
+____ ERROR at setup of TestCrearEncomienda.test_crear_exitoso_devuelve_201 _____
+envios/tests/test_api.py:85: in setup_method
+    self.empleado = EmpleadoFactory(email=self.user.email)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:40: in __call__
+    return cls.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:528: in create
+    return cls._generate(enums.CREATE_STRATEGY, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/django.py:121: in _generate
+    return super()._generate(strategy, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:465: in _generate
+    return step.build()
+           ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:270: in build
+    step.resolve(pre)
+/usr/local/lib/python3.11/site-packages/factory/builder.py:211: in resolve
+    self.attributes[field_name] = getattr(self.stub, field_name)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:356: in __getattr__
+    value = value.evaluate_pre(
+/usr/local/lib/python3.11/site-packages/factory/declarations.py:67: in evaluate_pre
+    return self.evaluate(instance, step, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:47: in evaluate
+    subfaker = self._get_faker(locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:69: in _get_faker
+    subfaker = faker.Faker(locale=locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/faker/proxy.py:72: in __init__
+    self._factory_map[locales[0]] = Factory.create(
+/usr/local/lib/python3.11/site-packages/faker/factory.py:43: in create
+    raise AttributeError(msg)
+E   AttributeError: Invalid configuration for faker locale `es_PE`
+__ ERROR at setup of TestCrearEncomienda.test_crear_asigna_empleado_del_token __
+envios/tests/test_api.py:85: in setup_method
+    self.empleado = EmpleadoFactory(email=self.user.email)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:40: in __call__
+    return cls.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:528: in create
+    return cls._generate(enums.CREATE_STRATEGY, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/django.py:121: in _generate
+    return super()._generate(strategy, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:465: in _generate
+    return step.build()
+           ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:270: in build
+    step.resolve(pre)
+/usr/local/lib/python3.11/site-packages/factory/builder.py:211: in resolve
+    self.attributes[field_name] = getattr(self.stub, field_name)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:356: in __getattr__
+    value = value.evaluate_pre(
+/usr/local/lib/python3.11/site-packages/factory/declarations.py:67: in evaluate_pre
+    return self.evaluate(instance, step, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:47: in evaluate
+    subfaker = self._get_faker(locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:69: in _get_faker
+    subfaker = faker.Faker(locale=locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/faker/proxy.py:72: in __init__
+    self._factory_map[locales[0]] = Factory.create(
+/usr/local/lib/python3.11/site-packages/faker/factory.py:43: in create
+    raise AttributeError(msg)
+E   AttributeError: Invalid configuration for faker locale `es_PE`
+_ ERROR at setup of TestCrearEncomienda.test_remitente_igual_destinatario_devuelve_400 _
+envios/tests/test_api.py:85: in setup_method
+    self.empleado = EmpleadoFactory(email=self.user.email)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:40: in __call__
+    return cls.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:528: in create
+    return cls._generate(enums.CREATE_STRATEGY, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/django.py:121: in _generate
+    return super()._generate(strategy, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:465: in _generate
+    return step.build()
+           ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:270: in build
+    step.resolve(pre)
+/usr/local/lib/python3.11/site-packages/factory/builder.py:211: in resolve
+    self.attributes[field_name] = getattr(self.stub, field_name)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:356: in __getattr__
+    value = value.evaluate_pre(
+/usr/local/lib/python3.11/site-packages/factory/declarations.py:67: in evaluate_pre
+    return self.evaluate(instance, step, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:47: in evaluate
+    subfaker = self._get_faker(locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:69: in _get_faker
+    subfaker = faker.Faker(locale=locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/faker/proxy.py:72: in __init__
+    self._factory_map[locales[0]] = Factory.create(
+/usr/local/lib/python3.11/site-packages/faker/factory.py:43: in create
+    raise AttributeError(msg)
+E   AttributeError: Invalid configuration for faker locale `es_PE`
+_ ERROR at setup of TestCrearEncomienda.test_peso_negativo_devuelve_400_con_campo _
+envios/tests/test_api.py:85: in setup_method
+    self.empleado = EmpleadoFactory(email=self.user.email)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:40: in __call__
+    return cls.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:528: in create
+    return cls._generate(enums.CREATE_STRATEGY, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/django.py:121: in _generate
+    return super()._generate(strategy, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:465: in _generate
+    return step.build()
+           ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:270: in build
+    step.resolve(pre)
+/usr/local/lib/python3.11/site-packages/factory/builder.py:211: in resolve
+    self.attributes[field_name] = getattr(self.stub, field_name)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:356: in __getattr__
+    value = value.evaluate_pre(
+/usr/local/lib/python3.11/site-packages/factory/declarations.py:67: in evaluate_pre
+    return self.evaluate(instance, step, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:47: in evaluate
+    subfaker = self._get_faker(locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:69: in _get_faker
+    subfaker = faker.Faker(locale=locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/faker/proxy.py:72: in __init__
+    self._factory_map[locales[0]] = Factory.create(
+/usr/local/lib/python3.11/site-packages/faker/factory.py:43: in create
+    raise AttributeError(msg)
+E   AttributeError: Invalid configuration for faker locale `es_PE`
+__ ERROR at setup of TestCrearEncomienda.test_codigo_sin_prefijo_devuelve_400 __
+envios/tests/test_api.py:85: in setup_method
+    self.empleado = EmpleadoFactory(email=self.user.email)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:40: in __call__
+    return cls.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:528: in create
+    return cls._generate(enums.CREATE_STRATEGY, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/django.py:121: in _generate
+    return super()._generate(strategy, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:465: in _generate
+    return step.build()
+           ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:270: in build
+    step.resolve(pre)
+/usr/local/lib/python3.11/site-packages/factory/builder.py:211: in resolve
+    self.attributes[field_name] = getattr(self.stub, field_name)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:356: in __getattr__
+    value = value.evaluate_pre(
+/usr/local/lib/python3.11/site-packages/factory/declarations.py:67: in evaluate_pre
+    return self.evaluate(instance, step, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:47: in evaluate
+    subfaker = self._get_faker(locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:69: in _get_faker
+    subfaker = faker.Faker(locale=locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/faker/proxy.py:72: in __init__
+    self._factory_map[locales[0]] = Factory.create(
+/usr/local/lib/python3.11/site-packages/faker/factory.py:43: in create
+    raise AttributeError(msg)
+E   AttributeError: Invalid configuration for faker locale `es_PE`
+__ ERROR at setup of TestCrearEncomienda.test_sin_auth_no_crea_y_devuelve_401 __
+envios/tests/test_api.py:85: in setup_method
+    self.empleado = EmpleadoFactory(email=self.user.email)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:40: in __call__
+    return cls.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:528: in create
+    return cls._generate(enums.CREATE_STRATEGY, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/django.py:121: in _generate
+    return super()._generate(strategy, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:465: in _generate
+    return step.build()
+           ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:270: in build
+    step.resolve(pre)
+/usr/local/lib/python3.11/site-packages/factory/builder.py:211: in resolve
+    self.attributes[field_name] = getattr(self.stub, field_name)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:356: in __getattr__
+    value = value.evaluate_pre(
+/usr/local/lib/python3.11/site-packages/factory/declarations.py:67: in evaluate_pre
+    return self.evaluate(instance, step, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:47: in evaluate
+    subfaker = self._get_faker(locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:69: in _get_faker
+    subfaker = faker.Faker(locale=locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/faker/proxy.py:72: in __init__
+    self._factory_map[locales[0]] = Factory.create(
+/usr/local/lib/python3.11/site-packages/faker/factory.py:43: in create
+    raise AttributeError(msg)
+E   AttributeError: Invalid configuration for faker locale `es_PE`
+_ ERROR at setup of TestCambiarEstado.test_cambiar_estado_exitoso_actualiza_bd_y_crea_historial _
+envios/tests/test_api.py:152: in setup_method
+    self.empleado = EmpleadoFactory(email=self.user.email)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:40: in __call__
+    return cls.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:528: in create
+    return cls._generate(enums.CREATE_STRATEGY, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/django.py:121: in _generate
+    return super()._generate(strategy, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:465: in _generate
+    return step.build()
+           ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:270: in build
+    step.resolve(pre)
+/usr/local/lib/python3.11/site-packages/factory/builder.py:211: in resolve
+    self.attributes[field_name] = getattr(self.stub, field_name)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:356: in __getattr__
+    value = value.evaluate_pre(
+/usr/local/lib/python3.11/site-packages/factory/declarations.py:67: in evaluate_pre
+    return self.evaluate(instance, step, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:47: in evaluate
+    subfaker = self._get_faker(locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:69: in _get_faker
+    subfaker = faker.Faker(locale=locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/faker/proxy.py:72: in __init__
+    self._factory_map[locales[0]] = Factory.create(
+/usr/local/lib/python3.11/site-packages/faker/factory.py:43: in create
+    raise AttributeError(msg)
+E   AttributeError: Invalid configuration for faker locale `es_PE`
+_ ERROR at setup of TestCambiarEstado.test_cambiar_al_mismo_estado_devuelve_400 _
+envios/tests/test_api.py:152: in setup_method
+    self.empleado = EmpleadoFactory(email=self.user.email)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:40: in __call__
+    return cls.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:528: in create
+    return cls._generate(enums.CREATE_STRATEGY, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/django.py:121: in _generate
+    return super()._generate(strategy, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:465: in _generate
+    return step.build()
+           ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:270: in build
+    step.resolve(pre)
+/usr/local/lib/python3.11/site-packages/factory/builder.py:211: in resolve
+    self.attributes[field_name] = getattr(self.stub, field_name)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:356: in __getattr__
+    value = value.evaluate_pre(
+/usr/local/lib/python3.11/site-packages/factory/declarations.py:67: in evaluate_pre
+    return self.evaluate(instance, step, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:47: in evaluate
+    subfaker = self._get_faker(locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:69: in _get_faker
+    subfaker = faker.Faker(locale=locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/faker/proxy.py:72: in __init__
+    self._factory_map[locales[0]] = Factory.create(
+/usr/local/lib/python3.11/site-packages/faker/factory.py:43: in create
+    raise AttributeError(msg)
+E   AttributeError: Invalid configuration for faker locale `es_PE`
+____ ERROR at setup of TestCambiarEstado.test_sin_campo_estado_devuelve_400 ____
+envios/tests/test_api.py:152: in setup_method
+    self.empleado = EmpleadoFactory(email=self.user.email)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:40: in __call__
+    return cls.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:528: in create
+    return cls._generate(enums.CREATE_STRATEGY, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/django.py:121: in _generate
+    return super()._generate(strategy, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:465: in _generate
+    return step.build()
+           ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:270: in build
+    step.resolve(pre)
+/usr/local/lib/python3.11/site-packages/factory/builder.py:211: in resolve
+    self.attributes[field_name] = getattr(self.stub, field_name)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:356: in __getattr__
+    value = value.evaluate_pre(
+/usr/local/lib/python3.11/site-packages/factory/declarations.py:67: in evaluate_pre
+    return self.evaluate(instance, step, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:47: in evaluate
+    subfaker = self._get_faker(locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:69: in _get_faker
+    subfaker = faker.Faker(locale=locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/faker/proxy.py:72: in __init__
+    self._factory_map[locales[0]] = Factory.create(
+/usr/local/lib/python3.11/site-packages/faker/factory.py:43: in create
+    raise AttributeError(msg)
+E   AttributeError: Invalid configuration for faker locale `es_PE`
+_ ERROR at setup of TestCambiarEstado.test_encomienda_inexistente_devuelve_404 _
+envios/tests/test_api.py:152: in setup_method
+    self.empleado = EmpleadoFactory(email=self.user.email)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:40: in __call__
+    return cls.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:528: in create
+    return cls._generate(enums.CREATE_STRATEGY, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/django.py:121: in _generate
+    return super()._generate(strategy, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:465: in _generate
+    return step.build()
+           ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:270: in build
+    step.resolve(pre)
+/usr/local/lib/python3.11/site-packages/factory/builder.py:211: in resolve
+    self.attributes[field_name] = getattr(self.stub, field_name)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:356: in __getattr__
+    value = value.evaluate_pre(
+/usr/local/lib/python3.11/site-packages/factory/declarations.py:67: in evaluate_pre
+    return self.evaluate(instance, step, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:47: in evaluate
+    subfaker = self._get_faker(locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:69: in _get_faker
+    subfaker = faker.Faker(locale=locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/faker/proxy.py:72: in __init__
+    self._factory_map[locales[0]] = Factory.create(
+/usr/local/lib/python3.11/site-packages/faker/factory.py:43: in create
+    raise AttributeError(msg)
+E   AttributeError: Invalid configuration for faker locale `es_PE`
+_ ERROR at setup of TestAccionesPersonalizadas.test_con_retraso_solo_devuelve_retrasadas _
+envios/tests/test_api.py:203: in setup_method
+    self.empleado = EmpleadoFactory(email=self.user.email)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:40: in __call__
+    return cls.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:528: in create
+    return cls._generate(enums.CREATE_STRATEGY, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/django.py:121: in _generate
+    return super()._generate(strategy, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:465: in _generate
+    return step.build()
+           ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:270: in build
+    step.resolve(pre)
+/usr/local/lib/python3.11/site-packages/factory/builder.py:211: in resolve
+    self.attributes[field_name] = getattr(self.stub, field_name)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:356: in __getattr__
+    value = value.evaluate_pre(
+/usr/local/lib/python3.11/site-packages/factory/declarations.py:67: in evaluate_pre
+    return self.evaluate(instance, step, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:47: in evaluate
+    subfaker = self._get_faker(locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:69: in _get_faker
+    subfaker = faker.Faker(locale=locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/faker/proxy.py:72: in __init__
+    self._factory_map[locales[0]] = Factory.create(
+/usr/local/lib/python3.11/site-packages/faker/factory.py:43: in create
+    raise AttributeError(msg)
+E   AttributeError: Invalid configuration for faker locale `es_PE`
+_ ERROR at setup of TestAccionesPersonalizadas.test_pendientes_solo_devuelve_pendientes _
+envios/tests/test_api.py:203: in setup_method
+    self.empleado = EmpleadoFactory(email=self.user.email)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:40: in __call__
+    return cls.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:528: in create
+    return cls._generate(enums.CREATE_STRATEGY, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/django.py:121: in _generate
+    return super()._generate(strategy, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:465: in _generate
+    return step.build()
+           ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:270: in build
+    step.resolve(pre)
+/usr/local/lib/python3.11/site-packages/factory/builder.py:211: in resolve
+    self.attributes[field_name] = getattr(self.stub, field_name)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:356: in __getattr__
+    value = value.evaluate_pre(
+/usr/local/lib/python3.11/site-packages/factory/declarations.py:67: in evaluate_pre
+    return self.evaluate(instance, step, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:47: in evaluate
+    subfaker = self._get_faker(locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:69: in _get_faker
+    subfaker = faker.Faker(locale=locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/faker/proxy.py:72: in __init__
+    self._factory_map[locales[0]] = Factory.create(
+/usr/local/lib/python3.11/site-packages/faker/factory.py:43: in create
+    raise AttributeError(msg)
+E   AttributeError: Invalid configuration for faker locale `es_PE`
+_ ERROR at setup of TestAccionesPersonalizadas.test_estadisticas_devuelve_todos_los_contadores _
+envios/tests/test_api.py:203: in setup_method
+    self.empleado = EmpleadoFactory(email=self.user.email)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:40: in __call__
+    return cls.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:528: in create
+    return cls._generate(enums.CREATE_STRATEGY, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/django.py:121: in _generate
+    return super()._generate(strategy, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:465: in _generate
+    return step.build()
+           ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:270: in build
+    step.resolve(pre)
+/usr/local/lib/python3.11/site-packages/factory/builder.py:211: in resolve
+    self.attributes[field_name] = getattr(self.stub, field_name)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:356: in __getattr__
+    value = value.evaluate_pre(
+/usr/local/lib/python3.11/site-packages/factory/declarations.py:67: in evaluate_pre
+    return self.evaluate(instance, step, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:47: in evaluate
+    subfaker = self._get_faker(locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:69: in _get_faker
+    subfaker = faker.Faker(locale=locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/faker/proxy.py:72: in __init__
+    self._factory_map[locales[0]] = Factory.create(
+/usr/local/lib/python3.11/site-packages/faker/factory.py:43: in create
+    raise AttributeError(msg)
+E   AttributeError: Invalid configuration for faker locale `es_PE`
+______ ERROR at setup of TestVersionado.test_v1_responde_200_con_cabecera ______
+envios/tests/test_api.py:246: in setup_method
+    EmpleadoFactory(email=self.user.email)
+/usr/local/lib/python3.11/site-packages/factory/base.py:40: in __call__
+    return cls.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:528: in create
+    return cls._generate(enums.CREATE_STRATEGY, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/django.py:121: in _generate
+    return super()._generate(strategy, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:465: in _generate
+    return step.build()
+           ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:270: in build
+    step.resolve(pre)
+/usr/local/lib/python3.11/site-packages/factory/builder.py:211: in resolve
+    self.attributes[field_name] = getattr(self.stub, field_name)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:356: in __getattr__
+    value = value.evaluate_pre(
+/usr/local/lib/python3.11/site-packages/factory/declarations.py:67: in evaluate_pre
+    return self.evaluate(instance, step, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:47: in evaluate
+    subfaker = self._get_faker(locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:69: in _get_faker
+    subfaker = faker.Faker(locale=locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/faker/proxy.py:72: in __init__
+    self._factory_map[locales[0]] = Factory.create(
+/usr/local/lib/python3.11/site-packages/faker/factory.py:43: in create
+    raise AttributeError(msg)
+E   AttributeError: Invalid configuration for faker locale `es_PE`
+______ ERROR at setup of TestVersionado.test_v2_responde_200_con_cabecera ______
+envios/tests/test_api.py:246: in setup_method
+    EmpleadoFactory(email=self.user.email)
+/usr/local/lib/python3.11/site-packages/factory/base.py:40: in __call__
+    return cls.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:528: in create
+    return cls._generate(enums.CREATE_STRATEGY, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/django.py:121: in _generate
+    return super()._generate(strategy, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:465: in _generate
+    return step.build()
+           ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:270: in build
+    step.resolve(pre)
+/usr/local/lib/python3.11/site-packages/factory/builder.py:211: in resolve
+    self.attributes[field_name] = getattr(self.stub, field_name)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:356: in __getattr__
+    value = value.evaluate_pre(
+/usr/local/lib/python3.11/site-packages/factory/declarations.py:67: in evaluate_pre
+    return self.evaluate(instance, step, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:47: in evaluate
+    subfaker = self._get_faker(locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:69: in _get_faker
+    subfaker = faker.Faker(locale=locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/faker/proxy.py:72: in __init__
+    self._factory_map[locales[0]] = Factory.create(
+/usr/local/lib/python3.11/site-packages/faker/factory.py:43: in create
+    raise AttributeError(msg)
+E   AttributeError: Invalid configuration for faker locale `es_PE`
+_________ ERROR at setup of TestVersionado.test_v2_incluye_campo_meta __________
+envios/tests/test_api.py:246: in setup_method
+    EmpleadoFactory(email=self.user.email)
+/usr/local/lib/python3.11/site-packages/factory/base.py:40: in __call__
+    return cls.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:528: in create
+    return cls._generate(enums.CREATE_STRATEGY, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/django.py:121: in _generate
+    return super()._generate(strategy, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:465: in _generate
+    return step.build()
+           ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:270: in build
+    step.resolve(pre)
+/usr/local/lib/python3.11/site-packages/factory/builder.py:211: in resolve
+    self.attributes[field_name] = getattr(self.stub, field_name)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:356: in __getattr__
+    value = value.evaluate_pre(
+/usr/local/lib/python3.11/site-packages/factory/declarations.py:67: in evaluate_pre
+    return self.evaluate(instance, step, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:47: in evaluate
+    subfaker = self._get_faker(locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:69: in _get_faker
+    subfaker = faker.Faker(locale=locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/faker/proxy.py:72: in __init__
+    self._factory_map[locales[0]] = Factory.create(
+/usr/local/lib/python3.11/site-packages/faker/factory.py:43: in create
+    raise AttributeError(msg)
+E   AttributeError: Invalid configuration for faker locale `es_PE`
+______ ERROR at setup of TestVersionado.test_v3_no_permitida_devuelve_404 ______
+envios/tests/test_api.py:246: in setup_method
+    EmpleadoFactory(email=self.user.email)
+/usr/local/lib/python3.11/site-packages/factory/base.py:40: in __call__
+    return cls.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:528: in create
+    return cls._generate(enums.CREATE_STRATEGY, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/django.py:121: in _generate
+    return super()._generate(strategy, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/base.py:465: in _generate
+    return step.build()
+           ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:270: in build
+    step.resolve(pre)
+/usr/local/lib/python3.11/site-packages/factory/builder.py:211: in resolve
+    self.attributes[field_name] = getattr(self.stub, field_name)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/builder.py:356: in __getattr__
+    value = value.evaluate_pre(
+/usr/local/lib/python3.11/site-packages/factory/declarations.py:67: in evaluate_pre
+    return self.evaluate(instance, step, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:47: in evaluate
+    subfaker = self._get_faker(locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/factory/faker.py:69: in _get_faker
+    subfaker = faker.Faker(locale=locale)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/faker/proxy.py:72: in __init__
+    self._factory_map[locales[0]] = Factory.create(
+/usr/local/lib/python3.11/site-packages/faker/factory.py:43: in create
+    raise AttributeError(msg)
+E   AttributeError: Invalid configuration for faker locale `es_PE`
+=================================== FAILURES ===================================
+________________ TestAutenticacion.test_sin_token_devuelve_401 _________________
+envios/tests/test_api.py:21: in test_sin_token_devuelve_401
+    response = api_client.get(reverse('encomienda-list'))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/django/urls/base.py:88: in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py:831: in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+E   django.urls.exceptions.NoReverseMatch: Reverse for 'encomienda-list' with no arguments not found. 2 pattern(s) tried: ['api/(?P<version>[^/]+)/encomiendas\\.(?P<format>[a-z0-9]+)/?$', 'api/(?P<version>[^/]+)/encomiendas/$']
+---------------------------- Captured stderr setup -----------------------------
+Creating test database for alias 'default'...
+______________ TestAutenticacion.test_token_invalido_devuelve_401 ______________
+envios/tests/test_api.py:26: in test_token_invalido_devuelve_401
+    response = api_client.get(reverse('encomienda-list'))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/django/urls/base.py:88: in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py:831: in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+E   django.urls.exceptions.NoReverseMatch: Reverse for 'encomienda-list' with no arguments not found. 2 pattern(s) tried: ['api/(?P<version>[^/]+)/encomiendas\\.(?P<format>[a-z0-9]+)/?$', 'api/(?P<version>[^/]+)/encomiendas/$']
+_____________ TestAutenticacion.test_con_token_valido_devuelve_200 _____________
+envios/tests/test_api.py:30: in test_con_token_valido_devuelve_200
+    response = auth_client.get(reverse('encomienda-list'))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/django/urls/base.py:88: in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py:831: in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+E   django.urls.exceptions.NoReverseMatch: Reverse for 'encomienda-list' with no arguments not found. 2 pattern(s) tried: ['api/(?P<version>[^/]+)/encomiendas\\.(?P<format>[a-z0-9]+)/?$', 'api/(?P<version>[^/]+)/encomiendas/$']
+=============================== warnings summary ===============================
+envios/tests/test_api.py: 20 warnings
+  /usr/local/lib/python3.11/site-packages/factory/django.py:181: DeprecationWarning: UserFactory._after_postgeneration will stop saving the instance after postgeneration hooks in the next major release.
+  If the save call is extraneous, set skip_postgeneration_save=True in the UserFactory.Meta.
+  To keep saving the instance, move the save call to your postgeneration hooks or override _after_postgeneration.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED envios/tests/test_api.py::TestAutenticacion::test_sin_token_devuelve_401
+FAILED envios/tests/test_api.py::TestAutenticacion::test_token_invalido_devuelve_401
+FAILED envios/tests/test_api.py::TestAutenticacion::test_con_token_valido_devuelve_200
+ERROR envios/tests/test_api.py::TestListadoEncomiendas::test_lista_respuesta_paginada
+ERROR envios/tests/test_api.py::TestListadoEncomiendas::test_filtro_por_estado
+ERROR envios/tests/test_api.py::TestListadoEncomiendas::test_busqueda_por_codigo
+ERROR envios/tests/test_api.py::TestCrearEncomienda::test_crear_exitoso_devuelve_201
+ERROR envios/tests/test_api.py::TestCrearEncomienda::test_crear_asigna_empleado_del_token
+ERROR envios/tests/test_api.py::TestCrearEncomienda::test_remitente_igual_destinatario_devuelve_400
+ERROR envios/tests/test_api.py::TestCrearEncomienda::test_peso_negativo_devuelve_400_con_campo
+ERROR envios/tests/test_api.py::TestCrearEncomienda::test_codigo_sin_prefijo_devuelve_400
+ERROR envios/tests/test_api.py::TestCrearEncomienda::test_sin_auth_no_crea_y_devuelve_401
+ERROR envios/tests/test_api.py::TestCambiarEstado::test_cambiar_estado_exitoso_actualiza_bd_y_crea_historial
+ERROR envios/tests/test_api.py::TestCambiarEstado::test_cambiar_al_mismo_estado_devuelve_400
+ERROR envios/tests/test_api.py::TestCambiarEstado::test_sin_campo_estado_devuelve_400
+ERROR envios/tests/test_api.py::TestCambiarEstado::test_encomienda_inexistente_devuelve_404
+ERROR envios/tests/test_api.py::TestAccionesPersonalizadas::test_con_retraso_solo_devuelve_retrasadas
+ERROR envios/tests/test_api.py::TestAccionesPersonalizadas::test_pendientes_solo_devuelve_pendientes
+ERROR envios/tests/test_api.py::TestAccionesPersonalizadas::test_estadisticas_devuelve_todos_los_contadores
+ERROR envios/tests/test_api.py::TestVersionado::test_v1_responde_200_con_cabecera
+ERROR envios/tests/test_api.py::TestVersionado::test_v2_responde_200_con_cabecera
+ERROR envios/tests/test_api.py::TestVersionado::test_v2_incluye_campo_meta - ...
+ERROR envios/tests/test_api.py::TestVersionado::test_v3_no_permitida_devuelve_404
+================== 3 failed, 20 warnings, 20 errors in 8.73s ===================
